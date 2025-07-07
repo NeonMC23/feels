@@ -1,0 +1,229 @@
+@import url("https://fonts.googleapis.com/css2?family=Fredoka:wght@300..700&display=swap");
+
+/* Reset & base */
+html {
+  background: linear-gradient(135deg, #2a1a0c, #0a3e09);
+  height: 100%;
+  width: 100%;
+  padding: 0;
+  margin: 0;
+  font-family: "Fredoka", sans-serif;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  color: #e0e0e0;
+  user-select: none;
+}
+
+body {
+  height: 100%;
+  width: 100%;
+  padding: 0;
+  margin: 0;
+  font-family: "Fredoka", sans-serif;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  color: #e0e0e0;
+  user-select: none;
+}
+
+/* Canvas en background plein écran sous le contenu */
+#effectCanvas {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  pointer-events: none; /* ne gêne pas clics/sélections */
+  z-index: 0;
+}
+
+body > * {
+  position: relative;
+  z-index: 1; /* tout le reste devant le canvas */
+}
+
+h1 {
+  font-size: 80px;
+  font-weight: 700;
+  margin-bottom: 20px;
+  text-align: center;
+  text-shadow: 0 2px 4px rgba(0, 0, 0, 0.5);
+  letter-spacing: 20px;
+}
+
+h2 {
+  font-size: 32px;
+  font-weight: 500;
+  margin-bottom: 40px;
+  text-align: center;
+  text-shadow: 0 1px 2px rgba(0, 0, 0, 0.3);
+  position: absolute;
+  top: 0px;
+  right: 40px;
+}
+h2 a {
+  color: #e0e0e0;
+  text-decoration: none;
+  font-weight: 600;
+  transition: color 0.2s, text-shadow 0.2s;
+}
+h2 a:hover {
+  color: #72d672;
+  text-shadow: 0 0 10px rgba(114, 214, 114, 0.8);
+}
+
+#controls {
+  background: rgba(255, 255, 255, 0.1);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  border-radius: 15px;
+  padding: 25px 35px;
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.4);
+  width: 320px;
+  margin: 30px;
+}
+
+label {
+  display: block;
+  margin-bottom: 18px;
+  font-weight: 600;
+  font-size: 16px;
+  letter-spacing: 0.03em;
+}
+
+input[type="range"],
+select {
+  width: 100%;
+  margin-top: 8px;
+  padding: 8px 0;
+  border-radius: 12px;
+  border: none;
+  background: rgba(255, 255, 255, 0.2);
+  color: #fff;
+  font-weight: 500;
+  box-shadow: inset 0 0 6px rgba(255, 255, 255, 0.3);
+  transition: background-color 0.3s ease;
+  -webkit-appearance: none; /* Remove default styling on webkit */
+  appearance: none; /* Standard property for compatibility */
+}
+select {
+  padding: 8px 12px;
+}
+/* Couleur du texte de l'option sélectionnée dans certains navigateurs */
+select option {
+  background-color: #222; /* arrière-plan des options */
+  color: #eee; /* texte des options */
+}
+
+input[type="range"]::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  appearance: none;
+  width: 22px;
+  height: 22px;
+  background: #72d672;
+  border-radius: 50%;
+  cursor: pointer;
+  box-shadow: 0 0 6px #72d672;
+  transition: background-color 0.3s ease;
+}
+
+input[type="range"]::-moz-range-thumb {
+  width: 22px;
+  height: 22px;
+  background: #72d672;
+  border-radius: 50%;
+  cursor: pointer;
+  box-shadow: 0 0 6px #72d672;
+  transition: background-color 0.3s ease;
+}
+
+input[type="range"]:hover::-webkit-slider-thumb {
+  background: #4cae4c;
+  box-shadow: 0 0 10px #4cae4c;
+}
+
+input[type="range"]:hover::-moz-range-thumb {
+  background: #4cae4c;
+  box-shadow: 0 0 10px #4cae4c;
+}
+
+select:hover,
+input[type="range"]:hover {
+  background: rgba(255, 255, 255, 0.3);
+}
+
+button {
+  width: 320px;
+
+  border: none;
+  border-radius: 25px;
+  padding: 15px 0;
+  margin: 0px 50px;
+  font-size: 18px;
+  font-weight: 700;
+  color: #0a2a0a;
+  cursor: pointer;
+
+  transition: background-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+#play:hover {
+  background: #4cae4c;
+  box-shadow: 0 8px 20px rgba(76, 174, 76, 0.8);
+}
+
+#stop:hover {
+  background: #c72c2c;
+  box-shadow: 0 8px 20px rgba(199, 44, 44, 0.8);
+}
+
+#play:active {
+  transform: scale(0.98);
+  box-shadow: 0 4px 8px rgba(76, 174, 76, 0.6);
+}
+#stop:active {
+  transform: scale(0.98);
+  box-shadow: 0 4px 8px rgba(199, 44, 44, 0.6);
+}
+
+#play {
+  background: #72d672;
+  box-shadow: 0 6px 12px rgba(114, 214, 114, 0.6);
+  margin-right: 0;
+  width: 320px;
+}
+
+#stop {
+  box-shadow: 0 6px 12px rgba(199, 44, 44, 0.6);
+  background: #f55656;
+  margin-left: 0;
+  width: 90px;
+}
+
+.button {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 10px;
+}
+
+#oscilloscope,
+#graph {
+  width: 380px;
+  height: 75px;
+  margin-top: 20px;
+  background: rgba(0, 0, 0, 0.2);
+  border-radius: 15px;
+  box-shadow: 0 0 15px rgba(114, 214, 114, 0.4);
+
+  pointer-events: none; /* pour qu’il ne bloque pas les clics */
+}
+
+#graph {
+  width: 100%;
+  max-height: 200px;
+}

@@ -1,0 +1,205 @@
+@import url("https://fonts.googleapis.com/css2?family=Fredoka:wght@300..700&display=swap");
+
+/* Reset & base */
+html {
+  background: linear-gradient(135deg, #2a1a0c, #0a3e09);
+  height: fit-content;
+  width: 100%;
+  justify-content: center;
+  align-items: center;
+  display: flex;
+  flex-direction: column;
+  padding: 0;
+  margin: 0;
+  font-family: "Fredoka", sans-serif;
+  color: #e0e0e0;
+  user-select: none;
+  overscroll-behavior: contain;
+  scrollbar-width: thin;
+  scrollbar-color: #72d672 #222;
+}
+body {
+  height: 100%;
+  width: fit-content;
+  padding: 20px;
+  margin: 0;
+  font-family: "Fredoka", sans-serif;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  color: #e0e0e0;
+  user-select: none;
+}
+
+h1 {
+  font-size: 80px;
+  font-weight: 700;
+  margin: 0;
+  margin-right: 20px;
+  border-right: 5px solid #016201;
+  text-align: center;
+  text-shadow: 0 2px 4px rgba(0, 0, 0, 0.5);
+  letter-spacing: 20px;
+}
+
+#effectCanvas {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  pointer-events: none; /* ne gêne pas clics/sélections */
+  z-index: 0;
+}
+
+#graph {
+  height: 85px;
+
+  background: rgba(0, 0, 0, 0.2);
+  border-radius: 15px;
+  box-shadow: 0 0 15px rgba(114, 214, 114, 0.4);
+
+  pointer-events: none; /* pour qu’il ne bloque pas les clics */
+}
+
+#graph {
+  width: 100%;
+  max-height: 200px;
+}
+
+header {
+  padding: 10px 20px;
+  border-radius: 20px;
+  border: #0a3e09 solid 2px;
+  width: 95%;
+  position: sticky;
+  top: 0;
+  backdrop-filter: blur(10px);
+  z-index: 1000;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  background-color: rgb(34, 34, 34, 0.7);
+}
+header {
+  box-shadow: 0 4px 24px rgba(114, 214, 114, 0.15), 0 1.5px 0 #0a3e09;
+  background: linear-gradient(
+    90deg,
+    rgba(34, 34, 34, 0.85) 60%,
+    rgba(114, 214, 114, 0.1) 100%
+  );
+  border: 2px solid #016201;
+  color: #e0e0e0;
+  font-size: 28px;
+  font-weight: 600;
+  letter-spacing: 8px;
+  text-shadow: 0 2px 8px #0a3e0955, 0 1px 2px #72d67233;
+  margin-top: 30px;
+  margin-bottom: 30px;
+  transition: box-shadow 0.2s, background 0.2s;
+}
+header:hover,
+header:focus-within {
+  box-shadow: 0 8px 32px rgba(114, 214, 114, 0.25), 0 2px 0 #72d672;
+  background: linear-gradient(
+    90deg,
+    rgba(34, 34, 34, 0.95) 40%,
+    rgba(114, 214, 114, 0.18) 100%
+  );
+}
+header a {
+  color: #e0e0e0;
+  text-decoration: none;
+  font-weight: 600;
+  transition: color 1s, text-shadow 0.2s;
+}
+header a:hover {
+  color: #72d672;
+  text-shadow: 0 0 10px rgba(114, 214, 114, 0.8);
+}
+
+.about {
+  margin-top: 30px;
+  background: rgba(34, 34, 34, 0.9);
+  border-radius: 10px;
+  padding: 20px;
+  text-align: left;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
+  z-index: 2;
+  max-height: 100%;
+  overflow-y: auto;
+}
+
+section {
+  padding: 30px;
+}
+
+h2 {
+  font-size: 32px;
+  font-weight: 500;
+  margin-bottom: 20px;
+  text-shadow: 0 1px 2px rgba(0, 0, 0, 0.3);
+}
+h3 {
+  font-size: 24px;
+  font-weight: 600;
+  margin-top: 20px;
+  margin-bottom: 10px;
+}
+h4 {
+  font-size: 20px;
+  font-weight: 500;
+  margin-top: 15px;
+  margin-bottom: 5px;
+}
+
+p {
+  font-size: 20px;
+  line-height: 1.5;
+  margin: 10px 0;
+}
+ul {
+  padding-left: 30px;
+  margin: 15px 0;
+  list-style: disc inside;
+  background: rgba(34, 34, 34, 0.7);
+  border-radius: 8px;
+  box-shadow: 0 1px 4px rgba(114, 214, 114, 0.08);
+}
+
+ol {
+  padding-left: 30px;
+  margin: 15px 0;
+  list-style: decimal inside;
+  background: rgba(34, 34, 34, 0.7);
+  border-radius: 8px;
+  box-shadow: 0 1px 4px rgba(114, 214, 114, 0.08);
+}
+
+li {
+  margin: 8px 0;
+  padding: 6px 10px;
+  border-radius: 6px;
+  transition: background 0.2s;
+}
+
+li:hover {
+  background: rgba(114, 214, 114, 0.08);
+}
+
+a {
+  color: #72d672;
+  text-decoration: underline;
+  font-weight: 500;
+  transition: color 0.2s, text-shadow 0.2s;
+  text-shadow: 0 1px 2px rgba(0, 0, 0, 0.2);
+}
+
+a:hover,
+a:focus {
+  color: #a6ffb6;
+  text-shadow: 0 2px 8px #72d67255;
+  text-decoration: none;
+  outline: none;
+}
