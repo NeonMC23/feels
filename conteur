@@ -1,0 +1,13 @@
+<?php
+$counter_file = 'visits.txt';
+
+if (!file_exists($counter_file)) {
+  file_put_contents($counter_file, 0);
+}
+
+$visits = (int) file_get_contents($counter_file);
+$visits++;
+file_put_contents($counter_file, $visits);
+
+echo $visits;
+?>

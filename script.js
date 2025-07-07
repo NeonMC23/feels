@@ -110,3 +110,15 @@ document.getElementById("bpm").addEventListener("input", (e) => {
   bpm = parseInt(e.target.value);
   Tone.Transport.bpm.value = bpm;
 });
+
+fetch("counter.php")
+  .then((response) => response.text())
+  .then((count) => {
+    document.getElementById(
+      "visitCount"
+    ).innerText = `Nombre de visites : ${count}`;
+  })
+  .catch((error) => {
+    document.getElementById("visitCount").innerText = `Erreur de compteur`;
+    console.error(error);
+  });
